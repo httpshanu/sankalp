@@ -15,9 +15,9 @@ import {
 const myCases = MOCK_PATIENTS.filter(p => p.supervisorId === 'sup1');
 
 const upcomingFollowups = [
-  { date: 'Today, Oct 16', time: '10:30 AM', label: 'Baby of Ananya', detail: 'Follow-up: Day 14 Visit', location: 'Community Health Center – Zone 4', isToday: true },
-  { date: 'Today, Oct 16', time: '02:15 PM', label: 'Baby of Priya', detail: 'Follow-up: Day 7 Visit', location: 'Home Visit – Green Park Apts', isToday: true },
-  { date: 'Tomorrow, Oct 17', time: '09:00 AM', label: 'Baby of Deepa', detail: 'Routine Weight Check', location: 'SNCU OPD', isToday: false },
+  { dateKey: 'dateToday', time: '10:30 AM', labelKey: 'babyOfAnanya', detailKey: 'followupDay14', locationKey: 'chcZone4', isToday: true },
+  { dateKey: 'dateToday', time: '02:15 PM', labelKey: 'babyOfPriya', detailKey: 'followupDay7', locationKey: 'homeVisitGreenPark', isToday: true },
+  { dateKey: 'dateTomorrow', time: '09:00 AM', labelKey: 'babyOfDeepa', detailKey: 'routineWeightCheck', locationKey: 'sncuOpd', isToday: false },
 ];
 
 function SupervisorCard({ s }) {
@@ -191,7 +191,7 @@ export default function SupervisorDashboard() {
                             {initials}
                           </div>
                           <div>
-                            <p className="text-sm font-medium text-slate-800">{t('baby')} {p.motherDetails.motherName.split(' ')[0]}</p>
+                            <p className="text-sm font-medium text-slate-800">{t('babyOfName').replace('{name}', t(p.motherDetails.motherName.split(' ')[0]))}</p>
                             <p className="text-xs text-slate-400">ID: {p.id}</p>
                           </div>
                         </div>
@@ -242,11 +242,11 @@ export default function SupervisorDashboard() {
           </div>
           <div className="divide-y divide-slate-50">
             {upcomingFollowups.map((f, i) => {
-              const isNewDate = i === 0 || f.date !== upcomingFollowups[i - 1].date;
+              const isNewDate = i === 0 || f.dateKey !== upcomingFollowups[i - 1].dateKey;
               return (
                 <div key={i}>
                   {isNewDate && (
-                    <p className="px-5 pt-3 pb-1 text-xs font-semibold text-slate-400 uppercase tracking-wide">{f.date}</p>
+                    <p className="px-5 pt-3 pb-1 text-xs font-semibold text-slate-400 uppercase tracking-wide">{t(f.dateKey)}</p>
                   )}
                   <div className="px-5 py-3 flex gap-3 hover:bg-slate-50 transition-colors cursor-pointer">
                     <div className={`w-12 rounded-lg py-2 text-center flex-shrink-0 ${f.isToday ? 'bg-[#0F4C75]' : 'bg-slate-100'}`}>
@@ -258,10 +258,10 @@ export default function SupervisorDashboard() {
                       </p>
                     </div>
                     <div className="flex-1 min-w-0">
-                      <p className="text-sm font-medium text-slate-800">{f.label}</p>
-                      <p className="text-xs text-slate-500 mt-0.5">{f.detail}</p>
+                      <p className="text-sm font-medium text-slate-800">{t(f.labelKey)}</p>
+                      <p className="text-xs text-slate-500 mt-0.5">{t(f.detailKey)}</p>
                       <p className="text-xs text-slate-400 mt-0.5 flex items-center gap-1 truncate">
-                        <span>📍</span> {f.location}
+                        <span>📍</span> {t(f.locationKey)}
                       </p>
                     </div>
                   </div>

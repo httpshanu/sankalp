@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Bell, Search, HelpCircle, X } from 'lucide-react';
+import { Bell, Search, X } from 'lucide-react';
 import { useLanguage } from '../../context/useLanguage';
 import { MOCK_NOTIFICATIONS } from '../../data/mockData';
 import { timeAgo } from '../../lib/utils';
@@ -113,10 +113,7 @@ export default function Topbar({ title }) {
           )}
         </div>
 
-        {/* Help */}
-        <button className="p-2 text-slate-500 hover:text-slate-700 hover:bg-slate-100 rounded-lg transition-colors">
-          <HelpCircle size={18} />
-        </button>
+
       </div>
     </header>
   );

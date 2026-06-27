@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/useAuth';
 import { useLanguage } from '../../context/useLanguage';
-import { Baby, Eye, EyeOff, Lock, Mail, AlertCircle } from 'lucide-react';
+import { Eye, EyeOff, Lock, Mail, AlertCircle } from 'lucide-react';
 
 export default function LoginPage() {
   const { login, error, setError } = useAuth();
@@ -44,15 +44,14 @@ export default function LoginPage() {
         <div className="absolute top-0 left-0 w-96 h-96 rounded-full bg-white/5 -translate-x-1/2 -translate-y-1/2"></div>
         <div className="absolute bottom-0 right-0 w-72 h-72 rounded-full bg-white/5 translate-x-1/3 translate-y-1/3"></div>
 
-        <div className="relative z-10">
-          <div className="flex items-center gap-4 mb-10">
-            <div className="w-16 h-16 rounded-2xl flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #14b8a6, #06b6d4, #3b82f6)' }}>
-              <Baby size={32} className="text-white" />
-            </div>
-            <div>
-              <h1 className="text-3xl font-extrabold tracking-wide" style={{ background: 'linear-gradient(135deg, #5eead4, #38bdf8, #818cf8)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>SANKALP</h1>
-              <p className="text-blue-200 text-sm">{t('neonatalCare')} Management</p>
-            </div>
+        <div className="relative z-10" style={{ mixBlendMode: 'screen' }}>
+          <div className="mb-10">
+            <img 
+              src="/logo.png" 
+              alt="Sankalp" 
+              className="w-64 object-contain -ml-2"
+              style={{ filter: 'brightness(1.2) grayscale(1) invert(1) sepia(1) hue-rotate(140deg) saturate(3) brightness(1.5)' }} 
+            />
           </div>
 
           <h2 className="text-white text-4xl font-bold leading-snug mb-6 whitespace-pre-line">
@@ -81,14 +80,13 @@ export default function LoginPage() {
       <div className="flex-1 lg:max-w-lg flex items-center justify-center p-5 sm:p-8">
         <div className="w-full max-w-md">
           {/* Mobile logo */}
-          <div className="flex items-center gap-3 mb-8 lg:hidden">
-            <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #14b8a6, #06b6d4, #3b82f6)' }}>
-              <Baby size={20} className="text-white" />
-            </div>
-            <div>
-              <h1 className="text-xl font-extrabold tracking-wide" style={{ background: 'linear-gradient(135deg, #5eead4, #38bdf8, #818cf8)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>SANKALP</h1>
-              <p className="text-blue-200 text-xs">{t('neonatalCare')} Management</p>
-            </div>
+          <div className="mb-8 lg:hidden flex justify-center" style={{ mixBlendMode: 'screen' }}>
+            <img 
+              src="/logo.png" 
+              alt="Sankalp" 
+              className="w-48 object-contain"
+              style={{ filter: 'brightness(1.2) grayscale(1) invert(1) sepia(1) hue-rotate(140deg) saturate(3) brightness(1.5)' }} 
+            />
           </div>
 
           <div className="bg-white rounded-2xl shadow-2xl p-6 sm:p-8">

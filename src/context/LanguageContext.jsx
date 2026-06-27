@@ -432,6 +432,28 @@ const translations = {
     loading: 'Loading...',
     baby: 'Baby of',
     of: 'of',
+    babyOfName: 'Baby of {name}',
+
+    // Mock Dashboard Follow-ups
+    dateToday: 'Today, Oct 16',
+    dateTomorrow: 'Tomorrow, Oct 17',
+    babyOfAnanya: 'Baby of Ananya',
+    babyOfPriya: 'Baby of Priya',
+    babyOfDeepa: 'Baby of Deepa',
+    followupDay14: 'Follow-up: Day 14 Visit',
+    followupDay7: 'Follow-up: Day 7 Visit',
+    routineWeightCheck: 'Routine Weight Check',
+    chcZone4: 'Community Health Center – Zone 4',
+    homeVisitGreenPark: 'Home Visit – Green Park Apts',
+    sncuOpd: 'SNCU OPD',
+
+    // Mock Names
+    Meera: 'Meera',
+    Rekha: 'Rekha',
+    Sunita: 'Sunita',
+    Meena: 'Meena',
+    Priya: 'Priya',
+    Sarah: 'Sarah',
   },
   hi: {
     // Sidebar
@@ -863,6 +885,28 @@ const translations = {
     loading: 'लोड हो रहा है...',
     baby: 'का शिशु',
     of: 'का',
+    babyOfName: '{name} का शिशु',
+
+    // Mock Dashboard Follow-ups
+    dateToday: 'आज, 16 अक्टूबर',
+    dateTomorrow: 'कल, 17 अक्टूबर',
+    babyOfAnanya: 'अनन्या का शिशु',
+    babyOfPriya: 'प्रिया का शिशु',
+    babyOfDeepa: 'दीपा का शिशु',
+    followupDay14: 'फॉलो-अप: 14वें दिन की यात्रा',
+    followupDay7: 'फॉलो-अप: 7वें दिन की यात्रा',
+    routineWeightCheck: 'नियमित वज़न जांच',
+    chcZone4: 'सामुदायिक स्वास्थ्य केंद्र – ज़ोन 4',
+    homeVisitGreenPark: 'घर का दौरा – ग्रीन पार्क अपार्टमेंट्स',
+    sncuOpd: 'एसएनसीयू ओपीडी',
+
+    // Mock Names
+    Meera: 'मीरा',
+    Rekha: 'रेखा',
+    Sunita: 'सुनीता',
+    Meena: 'मीना',
+    Priya: 'प्रिया',
+    Sarah: 'सारा',
   },
 };
 

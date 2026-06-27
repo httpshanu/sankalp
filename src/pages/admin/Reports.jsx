@@ -14,6 +14,37 @@ export default function Reports() {
     { id: 'government', label: t('governmentReport'), desc: t('governmentReportDesc'), icon: FileSpreadsheet, color: 'bg-rose-500' },
   ];
 
+  const handleDownload = (type, reportLabel) => {
+    let filename, blob;
+    
+    if (type === 'pdf') {
+      filename = `${reportLabel.replace(/\s+/g, '_')}_Report.pdf`;
+      // A minimal valid blank PDF in base64
+      const pdfBase64 = "JVBERi0xLjQKJcOkw7zDtsOfCjIgMCBvYmoKPDwvTGVuZ3RoIDMgMCBSL0ZpbHRlci9GbGF0ZURlY29kZT4+CnN0cmVhbQp4nDPQM1Qo5ypUMFAwALJMLU31jBQsTAz1LBSK0osSQTzN4tQc3fQc3RSOXJ0UvPzcdL383NR8o3S9yBwjR8MII0tDAwAAAP//AwBg2QnRCmVuZHN0cmVhbQplbmRvYmoKCjMgMCBvYmoKNDUKZW5kb2JqCgo0IDAgb2JqCjw8L1R5cGUvUGFnZS9NZWRpYUJveFswIDAgNTk1IDg0Ml0vUmVzb3VyY2VzPDwvRm9udDw8L0YxIDUgMCBSPj4+Pi9Db250ZW50cyAyIDAgUi9QYXJlbnQgNiAwIFI+PgplbmRvYmoKCjUgMCBvYmoKPDwvVHlwZS9Gb250L1N1YnR5cGUvVHlwZTEvQmFzZUZvbnQvSGVsdmV0aWNhPj4KZW5kb2JqCgo2IDAgb2JqCjw8L1R5cGUvUGFnZXMvQ291bnQgMS9LaWRzWzQgMCBSXT4+CmVuZG9iagoKNyAwIG9iago8PC9UeXBlL0NhdGFsb2cvUGFnZXMgNiAwIFI+PgplbmRvYmoKCjEgMCBvYmoKPDwvUHJvZHVjZXIoaUxhdGV4KS9DcmVhdG9yKFRleHQpL0NyZWF0aW9uRGF0ZShEOjIwMjExMTE1MTIwNDAwKjAwJzAwJykgPj4KZW5kb2JqCgp4cmVmCjAgOAowMDAwMDAwMDAwIDY1NTM1IGYgCjAwMDAwMDA0MDYgMDAwMDAgbiAKMDAwMDAwMDAxOSAwMDAwMCBuIAowMDAwMDAwMTM1IDAwMDAwIG4gCjAwMDAwMDAxNTcgMDAwMDAgbiAKMDAwMDAwMDI3MyAwMDAwMCBuIAowMDAwMDAwMzYxIDAwMDAwIG4gCjAwMDAwMDA0MTggMDAwMDAgbiAKdHJhaWxlcgo8PC9TaXplIDgvUm9vdCA3IDAgUi9JbmZvIDEgMCBSPj4Kc3RhcnR4cmVmCjUwMwolJUVPRgo=";
+      const byteCharacters = atob(pdfBase64);
+      const byteNumbers = new Array(byteCharacters.length);
+      for (let i = 0; i < byteCharacters.length; i++) {
+        byteNumbers[i] = byteCharacters.charCodeAt(i);
+      }
+      const byteArray = new Uint8Array(byteNumbers);
+      blob = new Blob([byteArray], { type: 'application/pdf' });
+    } else {
+      // Create a CSV instead of a corrupted XLSX, since Excel opens CSVs natively
+      filename = `${reportLabel.replace(/\s+/g, '_')}_Report.csv`;
+      const csvContent = `Report Type,Status\n${reportLabel},Mock Data Generated`;
+      blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    }
+
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  };
+
   return (
     <AppLayout title={t('reports')}>
       <div className="mb-5">
@@ -38,10 +69,16 @@ export default function Reports() {
                     <option>September 2023</option>
                     <option>August 2023</option>
                   </select>
-                  <button className="flex items-center gap-1 px-3 py-1.5 bg-[#0F4C75] text-white rounded-lg text-xs font-semibold hover:opacity-90 transition-opacity">
+                  <button 
+                    onClick={() => handleDownload('pdf', r.label)}
+                    className="flex items-center gap-1 px-3 py-1.5 bg-[#0F4C75] text-white rounded-lg text-xs font-semibold hover:opacity-90 transition-opacity"
+                  >
                     <Download size={12} /> PDF
                   </button>
-                  <button className="flex items-center gap-1 px-3 py-1.5 bg-emerald-600 text-white rounded-lg text-xs font-semibold hover:opacity-90 transition-opacity">
+                  <button 
+                    onClick={() => handleDownload('excel', r.label)}
+                    className="flex items-center gap-1 px-3 py-1.5 bg-emerald-600 text-white rounded-lg text-xs font-semibold hover:opacity-90 transition-opacity"
+                  >
                     <Download size={12} /> Excel
                   </button>
                 </div>

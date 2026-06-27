@@ -5,7 +5,7 @@ import { useLanguage } from '../../context/useLanguage';
 import { getInitials } from '../../lib/utils';
 import {
   LayoutDashboard, Users, FileText, Settings, LogOut,
-  ChevronLeft, ChevronRight, Baby, Building2, ClipboardList
+  ChevronLeft, ChevronRight, Building2, ClipboardList
 } from 'lucide-react';
 
 export default function Sidebar() {
@@ -45,15 +45,21 @@ export default function Sidebar() {
       style={{ background: 'linear-gradient(180deg, #0F4C75 0%, #0a3254 100%)', flexShrink: 0 }}
     >
       {/* Logo */}
-      <div className="flex items-center gap-3 px-4 py-5 border-b border-white/10">
-        <div className="w-10 h-10 rounded-2xl flex items-center justify-center flex-shrink-0" style={{ background: 'linear-gradient(135deg, #14b8a6, #06b6d4, #3b82f6)' }}>
-          <Baby size={22} className="text-white" />
-        </div>
-        {!collapsed && (
-          <div>
-            <h1 className="font-extrabold text-xl leading-tight tracking-wide" style={{ background: 'linear-gradient(135deg, #5eead4, #38bdf8, #818cf8)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>SANKALP</h1>
-            <p className="text-blue-200 text-sm">{t('neonatalCare')}</p>
-          </div>
+      <div className="flex items-center justify-center px-4 py-5 border-b border-white/10" style={{ mixBlendMode: 'screen' }}>
+        {collapsed ? (
+          <img 
+            src="/logo.png" 
+            alt="Sankalp" 
+            className="w-12 h-12 object-cover flex-shrink-0"
+            style={{ filter: 'brightness(1.2) grayscale(1) invert(1) sepia(1) hue-rotate(140deg) saturate(3) brightness(1.5)' }}
+          />
+        ) : (
+          <img 
+            src="/logo.png" 
+            alt="Sankalp" 
+            className="w-48 object-contain"
+            style={{ filter: 'brightness(1.2) grayscale(1) invert(1) sepia(1) hue-rotate(140deg) saturate(3) brightness(1.5)' }}
+          />
         )}
       </div>
 
